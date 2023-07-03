@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersRepository } from './repositories/users.repository';
+import { UnauthorizedError } from 'src/common/errors/types/UnauthorizedError';
 
 @Injectable()
 export class UsersService {
@@ -11,7 +12,7 @@ export class UsersService {
   }
 
   findAll() {
-    return this.repository.findAll();
+    throw new UnauthorizedError('Não autorizado.');
   }
 
   findOne(id: number) {
